@@ -75,6 +75,8 @@ class Server
                     $result .= $data;
                 }
 
+                fwrite($sock, "HTTP/1.1 404 Not Found\nContent-Length: 0\nConnection: close\n\n");
+
                 if (!$result) {
                     unset($this->clients[array_search($sock, $this->clients, true)]);
                     fclose($sock);
